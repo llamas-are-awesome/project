@@ -200,10 +200,20 @@ print(f"\n\nWelcome,",player_name,"the",player_class,"!")
              weapons = ", ".join(weapons[:-1]) + " or " + weapons[-1]
              choice = int(input(f"Choose your weapon {weapons}:  "))
 
+        def select_choice(self):
+            choice2=input("Do you choose to <fight> or <flee>?\n")
+            if choice2 == 'flee':
+                print("Begone coward! This land is not for you!")
+                quit()
+            elif choice2 == 'skip': print('The dummy does nothing angrily!')
+
      class dummy(Player):
 
          def select_weapon(self):
              self.weapon = "dagger"
+
+         def select_choice(self):
+             choice2='skip'
 
 
      class Game:
@@ -245,7 +255,7 @@ print(f"\n\nWelcome,",player_name,"the",player_class,"!")
 
      while not current_game.game_over:
          for player in players:
-             player.select_weapon()
+             player.select_choice()
          current_game.new_round()
          current_game.take_turn(human, dummy)
          current_game.take_turn(dummy, human)
